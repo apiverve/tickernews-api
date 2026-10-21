@@ -1,0 +1,156 @@
+openapi: 3.0.4
+info:
+  title: Ticker News
+  description: >-
+    Ticker News is a stock news API that returns the latest news stories about
+    one ticker symbol: US stocks and ETFs, stocks on 18 international markets,
+    cryptocurrencies, futures and currency pairs. Each story comes with its
+    headline, link, source, publisher and publication time, and is tagged as
+    directly about the company or as a related market story. Paid plans add
+    story summaries, headline tone and more stories per call.
+  termsOfService: https://apiverve.com/terms/
+  contact:
+    name: APIVerve Support
+    email: hello@apiverve.com
+    url: https://apiverve.com/contact
+  version: 1.0.0
+externalDocs:
+  description: Learn more about APIVerve
+  url: https://docs.apiverve.com?utm_source=openapi
+servers:
+  - url: https://api.apiverve.com/
+paths:
+  /v1/tickernews:
+    get:
+      summary: Ticker News
+      description: >-
+        Get the latest news stories about a stock, coin or futures ticker,
+        newest first.
+      operationId: tickernews
+      parameters:
+        - name: ticker
+          in: query
+          schema:
+            type: string
+          required: true
+          description: >-
+            The ticker symbol to get news for, for example AAPL, BRK.B, 7203 or
+            SHEL. A suffix such as BP.L, a coin pair such as BTC-USD, a contract
+            such as CL=F or a currency pair such as EUR/USD picks that market.
+          example: AAPL
+        - name: market
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            The market of the listing, when the ticker trades in more than one:
+            a two-letter market code, CRYPTO, FUTURES or FX. Defaults to the US
+            listing.
+          example: US
+        - name: relevance
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            direct returns only stories whose headline or summary names the
+            company or ticker; all also returns the sector round-ups and peer
+            stories the news feeds carry for the ticker.
+          example: direct
+        - name: since
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            Return only stories published at or after this date or date-time
+            (ISO 8601), for example 2026-10-01 or 2026-10-01T14:00:00Z.
+          example: '2026-10-01'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: status
+                  error:
+                    type: string
+                    description: error
+                  data:
+                    type: object
+                    description: data
+              example:
+                status: ok
+                error: null
+                data:
+                  ticker: AAPL
+                  name: Apple Inc. Common Stock
+                  market: US
+                  exchange: XNAS
+                  assetClass: equity
+                  relevance: direct
+                  lastUpdated: '2026-10-06T19:18:01.000Z'
+                  count: 3
+                  articles:
+                    - title: >-
+                        Scott Galloway: “Apple Wins by Showing Up Late” in AI,
+                        and Its New Home Hub Is the Test
+                      link: https://www.tikr.com/blog/scott-galloway-apple-wins-by-showing-up-late-in-ai-and-its-new-home-hub-is-the-test?ref=yahoofinance
+                      source: Yahoo Finance
+                      publisher: tikr.com
+                      publishedAt: '2026-10-06T18:44:16.000Z'
+                      relevance: direct
+                      snippet: >-
+                        Key TakeawaysApple is expected to launch its first smart
+                        home hub on Oct. 13, and Scott Galloway predicts it will
+                        be the top smart display by revenue within 18 months.
+                      sentiment: very positive
+                      sentimentScore: 8
+                    - title: >-
+                        Only Four Trillion-Dollar Stocks Are Beating the S&P
+                        500. What’s Next for the Megacaps?
+                      link: https://finance.yahoo.com/m/7003431f-36c8-336f-bf14-80d032b6a728/only-four-trillion-dollar.html
+                      source: Yahoo Finance
+                      publisher: finance.yahoo.com
+                      publishedAt: '2026-10-06T18:22:00.000Z'
+                      relevance: direct
+                      snippet: >-
+                        Only four trillion-dollar companies, including Nvidia
+                        and Apple, have beaten the S&P 500 this year, but recent
+                        rallies have left several looking overbought.
+                      sentiment: very negative
+                      sentimentScore: -3
+                    - title: >-
+                        Apple's Market Value Grew From $350 Billion to $4.75
+                        Trillion During Tim Cook's 15 Years as CEO. Here's What
+                        That Growth Curve Means for Betting on Apple's Next
+                        Chapter Under John Ternus.
+                      link: https://www.fool.com/investing/2026/10/06/apples-market-value-grew-from-350-billion-to-475-t/
+                      source: Yahoo Finance
+                      publisher: fool.com
+                      publishedAt: '2026-10-06T17:12:00.000Z'
+                      relevance: direct
+                      snippet: >-
+                        Ternus is inheriting a well-oiled machine, but Apple's
+                        growth may slow in the coming years.
+                      sentiment: very positive
+                      sentimentScore: 4
+        '401':
+          description: Your request was not authorized, or your API Key was invalid
+        '404':
+          description: Requested resource was not found
+        '500':
+          description: A server error has occurred, try again later
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
+security:
+  - api_key: []
