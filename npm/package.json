@@ -1,6 +1,6 @@
 {
   "name": "@apiverve/tickernews",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Ticker News is a stock news API that returns the latest news stories about one ticker symbol: US stocks and ETFs, stocks on 18 international markets, cryptocurrencies, futures and currency pairs. Each story comes with its headline, link, source, publisher and publication time, and is tagged as directly about the company or as a related market story. Paid plans add story summaries, headline tone and more stories per call.",
   "main": "index.js",
   "types": "index.d.ts",
