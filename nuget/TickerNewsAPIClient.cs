@@ -70,7 +70,7 @@ namespace APIVerve.API.TickerNews
             { "ticker", new ValidationRule { Type = "string", Required = true, MaxLength = 24 } },
             { "market", new ValidationRule { Type = "string", Required = false } },
             { "relevance", new ValidationRule { Type = "string", Required = false } },
-            { "since", new ValidationRule { Type = "string", Required = false, MaxLength = 30, Format = "date" } }
+            { "since", new ValidationRule { Type = "string", Required = false, MaxLength = 30, Format = "datetime" } }
         };
 
         /// <summary>Format validation patterns</summary>
