@@ -37,7 +37,7 @@ class Client
         'ticker' => ['type' => 'string', 'required' => true, 'maxLength' => 24],
         'market' => ['type' => 'string', 'required' => false],
         'relevance' => ['type' => 'string', 'required' => false],
-        'since' => ['type' => 'string', 'required' => false, 'maxLength' => 30, 'format' => 'date']
+        'since' => ['type' => 'string', 'required' => false, 'maxLength' => 30, 'format' => 'datetime']
     ];
 
     /**
