@@ -30,7 +30,7 @@ class tickernewsWrapper {
         this.baseURL = 'https://api.apiverve.com/v1/tickernews';
 
         // Validation rules for parameters (generated from schema)
-        this.validationRules = {"ticker":{"type":"string","required":true,"maxLength":24},"market":{"type":"string","required":false},"relevance":{"type":"string","required":false,"default":"direct"},"since":{"type":"string","required":false,"maxLength":30,"format":"date"}};
+        this.validationRules = {"ticker":{"type":"string","required":true,"maxLength":24},"market":{"type":"string","required":false},"relevance":{"type":"string","required":false,"default":"direct"},"since":{"type":"string","required":false,"maxLength":30,"format":"datetime"}};
     }
 
     /**
